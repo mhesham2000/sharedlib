@@ -1,3 +1,3 @@
-def getDockerPassword {
+def getDockerPassword() {
 	credentials('dockerhub-password')
 }

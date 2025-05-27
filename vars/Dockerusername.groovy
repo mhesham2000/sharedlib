@@ -1,3 +1,3 @@
-def getDockerUsername {
+def getDockerUsername() {
 	credentials('dockerhub-user')
 }
