@@ -1,23 +1,23 @@
 
-def call(){
+def call(script){
 
-	node('agent1'){
-		stage('Checkout App') {
-   		   checkout scm
+	script.node('agent1'){
+		script.stage('Checkout App') {
+   		   script.checkout script.scm
  		   }
-	withCredentials([
+	script.withCredentials([
 		string(credentialsId: 'dockerhub-user', variable: 'DOCKER_USER'),
 		string(credentialsId: 'dockerhub-password', variable: 'DOCKER_PASSWORD')
 
 			]){
 			
-		 stage('Build Docker image') {
-           		    sh "docker build -t mhesham2000/pythonhub:${env.BUILD_NUMBER} ."
+		 script.stage('Build Docker image') {
+           		    script.sh "docker build -t mhesham2000/pythonhub:${env.BUILD_NUMBER} ."
    					     }
 
-    	   	 stage('Push Docker image') {
-        		    sh "docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}"
-          		    sh "docker push mhesham2000/pythonhub:${env.BUILD_NUMBER}"
+    	   	 script.stage('Push Docker image') {
+        		    script.sh "docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}"
+          		    script.sh "docker push mhesham2000/pythonhub:${env.BUILD_NUMBER}"
       						  }
 		  		}
 }
