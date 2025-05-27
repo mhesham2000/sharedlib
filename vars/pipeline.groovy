@@ -1,9 +1,7 @@
 
 def call(){
 	pipeline{
-	agent {
-		label 'agent1'
-		}
+	agent any
 
 	environment{
 		DOCKER_USER = credentials('dockerhub-user')
