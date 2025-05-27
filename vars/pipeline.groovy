@@ -2,7 +2,9 @@
 def call(){
 
 	node('agent1'){
-
+		stage('Checkout App') {
+   		   checkout scm
+ 		   }
 	withCredentials([
 		string(credentialsId: 'dockerhub-user', variable: 'DOCKER_USER'),
 		string(credentialsId: 'dockerhub-password', variable: 'DOCKER_PASSWORD')
